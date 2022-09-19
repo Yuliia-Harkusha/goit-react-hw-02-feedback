@@ -7,23 +7,19 @@ import {
   OptionBtn,
 } from './FeedbackOptions.styled';
 
-export const FeedbackOptions = ({ onLeaveFeedback }) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <FeedbackBlock>
-      <FeedbsckItem>
-        <GiCoffeeCup />
-        <OptionBtn onClick={() => onLeaveFeedback('good')}>Good</OptionBtn>
-      </FeedbsckItem>
-      <FeedbsckItem>
-        <GiCoffeeCup />
-        <OptionBtn onClick={() => onLeaveFeedback('neutral')}>
-          Neutral
-        </OptionBtn>
-      </FeedbsckItem>
-      <FeedbsckItem>
-        <GiCoffeeCup />
-        <OptionBtn onClick={() => onLeaveFeedback('bad')}>Bad</OptionBtn>
-      </FeedbsckItem>
+      {options.map(option => {
+        return (
+          <FeedbsckItem key={option}>
+            <GiCoffeeCup />
+            <OptionBtn onClick={() => onLeaveFeedback(option)} name={option}>
+              {option}
+            </OptionBtn>
+          </FeedbsckItem>
+        );
+      })}
     </FeedbackBlock>
   );
 };
